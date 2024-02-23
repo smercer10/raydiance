@@ -11,10 +11,16 @@ std::string util::getTimestamp() {
 
     std::tm tm{};
 
-    // Not the end of the world if we can't get the timestamp
+// Not the end of the world if we can't get the timestamp
+#ifdef _WIN32
     if (localtime_s(&tm, &now)) {
         return "unknown";
     }
+#else
+    if (!localtime_r(&now, &tm)) {
+        return "unknown";
+    }
+#endif
 
     std::ostringstream oss;
     oss << std::put_time(&tm, "%d-%m-%Y-%H-%M-%S");
