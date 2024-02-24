@@ -1,4 +1,4 @@
-add_library(raydiance_lib util.cpp vec3.cpp)
+add_library(raydiance_lib util.cpp)
 
 target_compile_features(raydiance_lib PUBLIC cxx_std_17)
 
