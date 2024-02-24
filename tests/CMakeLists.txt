@@ -6,7 +6,7 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
-add_executable(raydiance_test example_test.cpp)
+add_executable(raydiance_test colour_test.cpp)
 
 target_link_libraries(raydiance_test raydiance_lib GTest::gtest_main)
 

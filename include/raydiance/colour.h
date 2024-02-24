@@ -6,7 +6,7 @@ class colour : private vec3 {
 public:
     using vec3::vec3;
 
-    // Makes more sense to access the colour components this way
+    // Makes more sense to access the colour elements this way
     [[nodiscard]] double r() const { return e[0]; }
     [[nodiscard]] double g() const { return e[1]; }
     [[nodiscard]] double b() const { return e[2]; }
