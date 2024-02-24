@@ -1,3 +1,4 @@
+#include "raydiance/colour.h"
 #include "raydiance/globals.h"
 #include "raydiance/util.h"
 #include <fstream>
@@ -18,15 +19,11 @@ int main() {
         std::cout << "Scan lines remaining: " << imgHeight - y << '\n';
 
         for (auto x{0}; x < imgWidth; ++x) {
-            auto r{static_cast<double>(x) / (imgWidth - 1)};
-            const auto g{static_cast<double>(y) / (imgHeight - 1)};
-            constexpr auto b{0};
+            colour pixelColour{static_cast<double>(x) / (imgWidth - 1),
+                               static_cast<double>(y) / (imgHeight - 1),
+                               0};
 
-            const auto ir{static_cast<int>(255.999 * r)};
-            const auto ig{static_cast<int>(255.999 * g)};
-            constexpr auto ib{static_cast<int>(255.999 * b)};
-
-            imgOut << ir << ' ' << ig << ' ' << ib << '\n';
+            pixelColour.write(imgOut);
         }
     }
 
