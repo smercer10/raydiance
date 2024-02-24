@@ -1,4 +1,4 @@
-add_library(raydiance_lib out.cpp)
+add_library(raydiance_lib out.cpp ray.cpp sphere.cpp)
 
 target_compile_features(raydiance_lib PUBLIC cxx_std_17)
 

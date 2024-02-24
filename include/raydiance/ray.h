@@ -15,12 +15,7 @@ public:
         return orig + t * dir;
     }
 
-    [[nodiscard]] colour getColour() {
-        auto unitDir = unitVector(dir);
-        auto a = 0.5 * (unitDir.y() + 1.0);
-
-        return (1.0 - a) * colour(1.0, 1.0, 1.0) + a * colour(0.5, 0.7, 1.0);// Linear interpolation
-    }
+    [[nodiscard]] colour getColour();
 
 private:
     point3 orig;

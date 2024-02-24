@@ -1,6 +1,7 @@
 #include "raydiance/camera.h"
 #include "raydiance/colour.h"
 #include "raydiance/ray.h"
+#include "raydiance/sphere.h"
 #include <fstream>
 #include <iostream>
 
