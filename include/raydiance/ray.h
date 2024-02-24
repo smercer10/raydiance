@@ -1,6 +1,6 @@
 #pragma once
-#include "raydiance/colour.h"
-#include "raydiance/vec3.h"
+#include "colour.h"
+#include "vec3.h"
 
 class ray {
 public:
@@ -10,12 +10,7 @@ public:
 
     [[nodiscard]] point3 origin() const { return orig; }
     [[nodiscard]] vec3 direction() const { return dir; }
-
-    [[nodiscard]] point3 at(double t) const {
-        return orig + t * dir;
-    }
-
-    [[nodiscard]] colour getColour();
+    [[nodiscard]] point3 at(double t) const { return orig + t * dir; }
 
 private:
     point3 orig;

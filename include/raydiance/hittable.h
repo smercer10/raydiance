@@ -1,5 +1,5 @@
 #pragma once
-#include "raydiance/ray.h"
+#include "ray.h"
 #include <cassert>
 
 class hitRecord {
@@ -10,8 +10,6 @@ public:
     bool frontFace{};
 
     void setFaceNormal(const ray &r, const vec3 &outwardNormal) {
-        assert(outwardNormal.length() == 1.0);
-
         frontFace = dot(r.direction(), outwardNormal) < 0;
         normal = frontFace ? outwardNormal : -outwardNormal;
     }
