@@ -29,15 +29,15 @@ public:
         return *this;
     }
 
-    vec3 &operator*=(double s) {
-        e[0] *= s;
-        e[1] *= s;
-        e[2] *= s;
+    vec3 &operator*=(double t) {
+        e[0] *= t;
+        e[1] *= t;
+        e[2] *= t;
 
         return *this;
     }
 
-    vec3 &operator/=(double s) { return *this *= 1 / s; }
+    vec3 &operator/=(double t) { return *this *= 1 / t; }
 
     [[nodiscard]] double length() const { return std::sqrt(lengthSquared()); }
 
@@ -67,16 +67,16 @@ inline vec3 operator*(const vec3 &u, const vec3 &v) {
     return {u.e[0] * v.e[0], u.e[1] * v.e[1], u.e[2] * v.e[2]};
 }
 
-inline vec3 operator*(double s, const vec3 &v) {
-    return {s * v.e[0], s * v.e[1], s * v.e[2]};
+inline vec3 operator*(double t, const vec3 &v) {
+    return {t * v.e[0], t * v.e[1], t * v.e[2]};
 }
 
-inline vec3 operator*(const vec3 &v, double s) {
-    return s * v;
+inline vec3 operator*(const vec3 &v, double t) {
+    return t * v;
 }
 
-inline vec3 operator/(vec3 v, double s) {
-    return (1 / s) * v;
+inline vec3 operator/(vec3 v, double t) {
+    return (1 / t) * v;
 }
 
 inline double dot(const vec3 &u, const vec3 &v) {
