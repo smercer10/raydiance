@@ -3,12 +3,6 @@
 
 // WIP
 colour ray::getColour() {
-    sphere s(point3(0, 0, -1), 0.5);
-
-    if (s.isHit(*this)) {
-        return {1, 0, 0};
-    }
-
     auto unitDir = unitVector(dir);
     auto a = 0.5 * (unitDir.y() + 1.0);
 
