@@ -1,4 +1,4 @@
-add_library(raydiance_lib out.cpp sphere.cpp hlist.cpp)
+add_library(raydiance_lib out.cpp sphere.cpp hlist.cpp interval.cpp)
 
 target_compile_features(raydiance_lib PUBLIC cxx_std_17)
 

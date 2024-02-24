@@ -7,7 +7,7 @@ class sphere : public hittable {
 public:
     sphere(point3 cen, double r) : center(cen), radius(r){};
 
-    [[nodiscard]] bool isHit(const ray &r, double tMin, double tMax, hitRecord &rec) const override;
+    [[nodiscard]] bool isHit(const ray &r, interval tRange, hitRecord &rec) const override;
 
 private:
     point3 center;

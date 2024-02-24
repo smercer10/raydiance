@@ -1,7 +1,7 @@
 #include "raydiance/camera.h"
 #include "raydiance/colour.h"
+#include "raydiance/globals.h"
 #include "raydiance/hlist.h"
-#include "raydiance/math.h"
 #include "raydiance/sphere.h"
 #include <fstream>
 #include <iostream>
@@ -9,7 +9,7 @@
 
 colour rayColour(const ray &r, const hittable &world) {
     hitRecord rec;
-    if (world.isHit(r, 0, math::infinity, rec)) {
+    if (world.isHit(r, interval{0.0, infinity}, rec)) {
         return 0.5 * colour{rec.normal.x() + 1, rec.normal.y() + 1, rec.normal.z() + 1};
     }
 

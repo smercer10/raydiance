@@ -1,5 +1,6 @@
 #pragma once
 #include "hittable.h"
+#include "interval.h"
 #include <memory>
 #include <utility>
 #include <vector>
@@ -14,5 +15,5 @@ public:
     void clear() { objects.clear(); }
     void add(const std::shared_ptr<hittable> &object) { objects.emplace_back(object); }
 
-    [[nodiscard]] bool isHit(const ray &r, double tMin, double tMax, hitRecord &rec) const override;
+    [[nodiscard]] bool isHit(const ray &r, interval tRange, hitRecord &rec) const override;
 };

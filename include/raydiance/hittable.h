@@ -1,4 +1,5 @@
 #pragma once
+#include "interval.h"
 #include "ray.h"
 #include <cassert>
 
@@ -19,5 +20,5 @@ class hittable {
 public:
     virtual ~hittable() = default;
 
-    virtual bool isHit(const ray &r, double tMin, double tMax, hitRecord &rec) const = 0;
+    virtual bool isHit(const ray &r, interval tRange, hitRecord &rec) const = 0;
 };
