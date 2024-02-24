@@ -1,13 +1,13 @@
 #pragma once
+#include "raydiance/hittable.h"
 #include "raydiance/ray.h"
 #include "raydiance/vec3.h"
 
-class sphere {
+class sphere : public hittable {
 public:
-    sphere() = default;
     sphere(point3 cen, double r) : center(cen), radius(r){};
 
-    [[nodiscard]] bool isHit(const ray &r) const;
+    [[nodiscard]] bool isHit(const ray &r, double tMin, double tMax, hitRecord &rec) const override;
 
 private:
     point3 center;
