@@ -1,5 +1,5 @@
 #pragma once
-#include "raydiance/vec3.h"
+#include "vec3.h"
 
 // Vectors and colours should be treated as different types
 class colour : private vec3 {

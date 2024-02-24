@@ -1,6 +1,6 @@
 #pragma once
-#include "raydiance/out.h"
-#include "raydiance/vec3.h"
+#include "out.h"
+#include "vec3.h"
 
 // The Camera uses a right-handed coordinate system
 namespace camera {

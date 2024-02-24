@@ -1,7 +1,7 @@
 #pragma once
-#include "raydiance/hittable.h"
-#include "raydiance/ray.h"
-#include "raydiance/vec3.h"
+#include "hittable.h"
+#include "ray.h"
+#include "vec3.h"
 
 class sphere : public hittable {
 public:
