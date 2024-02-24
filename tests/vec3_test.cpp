@@ -95,3 +95,80 @@ TEST(Vec3ClassTest, LengthSquared) {
     vec3 v2(0.0, 0.0, 0.0);
     EXPECT_DOUBLE_EQ(v2.lengthSquared(), 0.0);
 }
+
+TEST(Vec3HelperTest, Addition) {
+    vec3 v1(0.5, -0.6, 0.7);
+    vec3 v2(0.11, 0.0, 0.3);
+    vec3 v3 = v1 + v2;
+    EXPECT_DOUBLE_EQ(v3.x(), 0.61);
+    EXPECT_DOUBLE_EQ(v3.y(), -0.6);
+    EXPECT_DOUBLE_EQ(v3.z(), 1.0);
+}
+
+TEST(Vec3HelperTest, Subtraction) {
+    vec3 v1(0.8, 0.6, 0.3);
+    vec3 v2(0.01, 0.2, 0.7);
+    vec3 v3 = v1 - v2;
+    EXPECT_DOUBLE_EQ(v3.x(), 0.79);
+    EXPECT_DOUBLE_EQ(v3.y(), 0.4);
+    EXPECT_DOUBLE_EQ(v3.z(), -0.4);
+}
+
+TEST(Vec3HelperTest, HadamardProduct) {
+    vec3 v1(0.5, 0.6, 0.7);
+    vec3 v2(0.1, -0.2, 0.0);
+    vec3 v3 = v1 * v2;
+    EXPECT_DOUBLE_EQ(v3.x(), 0.05);
+    EXPECT_DOUBLE_EQ(v3.y(), -0.12);
+    EXPECT_DOUBLE_EQ(v3.z(), 0.0);
+}
+
+TEST(Vec3HelperTest, ScalarMultiplication) {
+    vec3 v1(0.5, 0.6, -0.7);
+    vec3 v2 = v1 * 2;
+    EXPECT_DOUBLE_EQ(v2.x(), 1.0);
+    EXPECT_DOUBLE_EQ(v2.y(), 1.2);
+    EXPECT_DOUBLE_EQ(v2.z(), -1.4);
+
+    vec3 v3 = 3 * v2;
+    EXPECT_DOUBLE_EQ(v3.x(), 3.0);
+    EXPECT_DOUBLE_EQ(v3.y(), 3.6);
+    EXPECT_DOUBLE_EQ(v3.z(), -4.2);
+}
+
+TEST(Vec3HelperTest, ScalarDivision) {
+    vec3 v1(0.5, 0.6, -0.7);
+    vec3 v2 = v1 / 2;
+    EXPECT_DOUBLE_EQ(v2.x(), 0.25);
+    EXPECT_DOUBLE_EQ(v2.y(), 0.3);
+    EXPECT_DOUBLE_EQ(v2.z(), -0.35);
+}
+
+TEST(Vec3HelperTest, DotProduct) {
+    vec3 v1(0.5, 0.6, 0.7);
+    vec3 v2(0.1, -0.2, 0.0);
+    EXPECT_DOUBLE_EQ(dot(v1, v2), -0.07);
+}
+
+TEST(Vec3HelperTest, CrossProduct) {
+    vec3 v1(0.5, 0.6, 0.7);
+    vec3 v2(0.1, -0.2, 0.0);
+    vec3 v3 = cross(v1, v2);
+    EXPECT_DOUBLE_EQ(v3.x(), 0.14);
+    EXPECT_DOUBLE_EQ(v3.y(), 0.07);
+    EXPECT_DOUBLE_EQ(v3.z(), -0.16);
+
+    vec3 v4 = cross(v2, v1);
+    EXPECT_DOUBLE_EQ(v4.x(), -0.14);
+    EXPECT_DOUBLE_EQ(v4.y(), -0.07);
+    EXPECT_DOUBLE_EQ(v4.z(), 0.16);
+}
+
+TEST(Vec3HelperTest, UnitVector) {
+    vec3 v1(0.5, 0.6, 0.7);
+    vec3 v2 = unitVector(v1);
+    EXPECT_DOUBLE_EQ(v2.length(), 1.0);
+    EXPECT_DOUBLE_EQ(v2.x(), 0.476731294622796);
+    EXPECT_DOUBLE_EQ(v2.y(), 0.572077553547355);
+    EXPECT_DOUBLE_EQ(v2.z(), 0.667423812471915);
+}
