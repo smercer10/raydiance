@@ -1,7 +1,7 @@
 #include "raydiance/sphere.h"
 #include <cmath>
 
-[[nodiscard]] bool sphere::isHit(const ray &r, interval tRange, hitRecord &rec) const {
+[[nodiscard]] bool sphere::isHit(const ray &r, interval tRange, intersection &i) const {
     vec3 oc{r.origin() - center};
     auto a{r.direction().lengthSquared()};
     auto halfB{dot(oc, r.direction())};
@@ -22,10 +22,10 @@
         }
     }
 
-    rec.t = root;
-    rec.p = r.at(rec.t);
-    vec3 outwardNormal{(rec.p - center) / radius};
-    rec.setFaceNormal(r, outwardNormal);
+    i.t = root;
+    i.p = r.at(i.t);
+    vec3 outwardNormal{(i.p - center) / radius};
+    i.setFaceNormal(r, outwardNormal);
 
     return true;
 }

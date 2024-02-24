@@ -3,7 +3,7 @@
 #include "ray.h"
 #include <cassert>
 
-class hitRecord {
+class intersection {
 public:
     point3 p;
     vec3 normal;
@@ -16,9 +16,9 @@ public:
     }
 };
 
-class hittable {
+class object {
 public:
-    virtual ~hittable() = default;
+    virtual ~object() = default;
 
-    virtual bool isHit(const ray &r, interval tRange, hitRecord &rec) const = 0;
+    virtual bool isHit(const ray &r, interval tRange, intersection &rec) const = 0;
 };

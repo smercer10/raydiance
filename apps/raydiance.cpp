@@ -1,22 +1,23 @@
 #include "raydiance/camera.h"
 #include "raydiance/colour.h"
 #include "raydiance/globals.h"
-#include "raydiance/hlist.h"
+#include "raydiance/scene.h"
 #include "raydiance/sphere.h"
 #include <fstream>
 #include <iostream>
 #include <memory>
 
-colour rayColour(const ray &r, const hittable &world) {
-    hitRecord rec;
-    if (world.isHit(r, interval{0.0, infinity}, rec)) {
-        return 0.5 * colour{rec.normal.x() + 1, rec.normal.y() + 1, rec.normal.z() + 1};
+colour rayColour(const ray &r, const object &world) {
+    intersection i;
+    if (world.isHit(r, interval{0.0, infinity}, i)) {
+        return 0.5 * colour{i.normal.x() + 1, i.normal.y() + 1, i.normal.z() + 1};
     }
 
     vec3 unitDir = unitVector(r.direction());
     auto t = 0.5 * (unitDir.y() + 1.0);
     return (1.0 - t) * colour{1.0, 1.0, 1.0} + t * colour{0.5, 0.7, 1.0};
 }
+
 int main() {
     std::ofstream imgOut{out::openOutFile("img")};
 
@@ -28,7 +29,7 @@ int main() {
     imgOut << "P3\n"
            << out::imgWidth << ' ' << out::imgHeight << "\n255\n";
 
-    hlist world;
+    scene world;
     world.add(std::make_shared<sphere>(point3{0.0, 0.0, -1}, 0.5));
     world.add(std::make_shared<sphere>(point3{0.0, -100.5, -1}, 100));
 
