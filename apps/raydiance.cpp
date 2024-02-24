@@ -19,8 +19,8 @@ int main() {
         std::cout << "Scan lines remaining: " << out::imgHeight - y << '\n';
 
         for (auto x{0}; x < out::imgWidth; ++x) {
-            auto pixelCenter = camera::zerothPixel + (x * camera::pixelDeltaU) + (y * camera::pixelDeltaV);
-            auto rayDir = pixelCenter - camera::center;
+            point3 pixelCenter = camera::zerothPixel + (x * camera::pixelDeltaU) + (y * camera::pixelDeltaV);
+            vec3 rayDir = pixelCenter - camera::center;
             ray r{camera::center, rayDir};
 
             colour pixelColour = r.getColour();
