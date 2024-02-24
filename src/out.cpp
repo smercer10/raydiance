@@ -1,4 +1,4 @@
-#include "raydiance/util.h"
+#include "raydiance/out.h"
 #include <ctime>
 #include <filesystem>
 #include <fstream>
@@ -6,7 +6,7 @@
 #include <sstream>
 #include <string>
 
-std::string util::getTimestamp() {
+std::string out::getTimestamp() {
     const std::time_t now{std::time(nullptr)};
 
     std::tm tm{};
@@ -28,7 +28,7 @@ std::string util::getTimestamp() {
     return oss.str();
 }
 
-std::ofstream util::openOutFile(const std::string &name) {
+std::ofstream out::openOutFile(const std::string &name) {
     if (!std::filesystem::exists(name)) {
         std::filesystem::create_directory(name);
     }

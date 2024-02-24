@@ -1,4 +1,5 @@
 #pragma once
+#include "raydiance/colour.h"
 #include "raydiance/vec3.h"
 
 class ray {
@@ -12,6 +13,13 @@ public:
 
     [[nodiscard]] point3 at(double t) const {
         return orig + t * dir;
+    }
+
+    [[nodiscard]] colour getColour() {
+        auto unitDir = unitVector(dir);
+        auto a = 0.5 * (unitDir.y() + 1.0);
+
+        return (1.0 - a) * colour(1.0, 1.0, 1.0) + a * colour(0.5, 0.7, 1.0);// Linear interpolation
     }
 
 private:

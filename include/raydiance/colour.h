@@ -25,3 +25,11 @@ public:
             << static_cast<int>(255.999 * b()) << '\n';
     }
 };
+
+inline colour operator*(double a, const colour &c) {
+    return {a * c.r(), a * c.g(), a * c.b()};
+}
+
+inline colour operator*(const colour &c, double a) {
+    return a * c;
+}
