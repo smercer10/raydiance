@@ -35,6 +35,8 @@ int main() {
     cam.setSamplesPerPixel(100);
     cam.setMaxDepth(50);
     cam.setFieldOfView(20);
+    cam.setDefocusAngle(10.0);
+    cam.setFocusDistance(3.4);
 
     cam.render(imgOut, world);
 

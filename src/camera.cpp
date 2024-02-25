@@ -32,19 +32,17 @@ void camera::initialize() {
     imgHeight = static_cast<int>(imgWidth / aspectRatio);
     imgHeight = (imgHeight < 1) ? 1 : imgHeight;// Image height must be at least 1
 
-    auto focalLength{(lookFrom - lookAt).length()};
-
     // Get viewport height based on focal length and vertical field of view
     auto theta{degreesToRadians(fieldOfView)};
-    auto h{tan(theta * 0.5)};
-    auto viewportHeight{2.0 * h * focalLength};
+    auto h{std::tan(theta * 0.5)};
+    auto viewportHeight{2.0 * h * focusDistance};
 
     // Can't just use aspectRatio because the actual ratio of the image may be different to the ideal ratio
     auto viewportWidth{viewportHeight * (static_cast<double>(imgWidth) / imgHeight)};
 
-    auto w{unitVector(lookFrom - lookAt)};
-    auto u{unitVector(cross(viewUp, w))};
-    auto v{cross(w, u)};
+    w = unitVector(lookFrom - lookAt);
+    u = unitVector(cross(cameraUp, w));
+    v = cross(w, u);
 
     // Vector across viewport horizontal edge
     vec3 viewportU{viewportWidth * u};
@@ -55,15 +53,19 @@ void camera::initialize() {
     horPixelSpacing = viewportU / imgWidth;
     verPixelSpacing = viewportV / imgHeight;
 
-    point3 viewportTopLeft{lookFrom - (viewportU * 0.5) - (viewportV * 0.5) - (focalLength * w)};
+    point3 viewportTopLeft{lookFrom - (viewportU * 0.5) - (viewportV * 0.5) - (focusDistance * w)};
     zerothPixel = viewportTopLeft + (horPixelSpacing * 0.5) + (verPixelSpacing * 0.5);
+
+    auto defocusRadius = focusDistance * std::tan(degreesToRadians(defocusAngle) * 0.5);
+    defocusDiskU = defocusRadius * u;
+    defocusDiskV = defocusRadius * v;
 }
 
 ray camera::getRay(int x, int y) const {
     point3 pixelCentre{zerothPixel + (x * horPixelSpacing) + (y * verPixelSpacing)};
     point3 pixelSample{pixelCentre + samplePixel()};
 
-    point3 rayOrigin{lookFrom};
+    point3 rayOrigin{defocusAngle <= 0.0 ? lookFrom : sampleDefocusDisk()};
     vec3 rayDirection{pixelSample - rayOrigin};
 
     return ray{rayOrigin, rayDirection};
@@ -97,4 +99,9 @@ vec3 camera::samplePixel() const {
     auto px{-0.5 + randomDouble()};
     auto py{-0.5 + randomDouble()};
     return (px * horPixelSpacing) + (py * verPixelSpacing);
+}
+
+point3 camera::sampleDefocusDisk() const {
+    auto p{vec3::randomInUnitDisk()};
+    return lookFrom + (defocusDiskU * p.x()) + (defocusDiskV * p.y());
 }

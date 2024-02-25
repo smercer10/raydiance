@@ -14,7 +14,9 @@ public:
     [[maybe_unused]] void setFieldOfView(double fov) { fieldOfView = fov; }
     [[maybe_unused]] void setLookFrom(const point3 &from) { lookFrom = from; }
     [[maybe_unused]] void setLookAt(const point3 &at) { lookAt = at; }
-    [[maybe_unused]] void setViewUp(const vec3 &up) { viewUp = up; }
+    [[maybe_unused]] void setCameraUp(const vec3 &up) { cameraUp = up; }
+    [[maybe_unused]] void setDefocusAngle(double angle) { defocusAngle = angle; }
+    [[maybe_unused]] void setFocusDistance(double distance) { focusDistance = distance; }
 
     // Initialize the camera and render the world
     void render(std::ostream &imgOut, const object &world);
@@ -24,16 +26,26 @@ private:
     vec3 verPixelSpacing;
     point3 zerothPixel;// Pixel at (0, 0) of the image
 
+    // Forms an orthonormal basis for the camera's coordinate system
+    vec3 u;// Points to the right of the camera
+    vec3 v;// Points up from the camera
+    vec3 w;// Points out from the camera
+
+    vec3 defocusDiskU;// Horizontal radius of the camera defocus disk
+    vec3 defocusDiskV;// Vertical radius of the camera defocus disk
+
     // Camera configuration
     double aspectRatio{16.0 / 9.0};
     int imgWidth{400};
     int imgHeight{};
     int samplesPerPixel{10};
-    int maxDepth{10};
+    int maxDepth{10};        // Maximum number of bounces for a ray
     double fieldOfView{90.0};// Vertical field of view in degrees
     point3 lookFrom{0, 0, -1};
     point3 lookAt{0, 0, 0};
-    vec3 viewUp{0, 1, 0};
+    vec3 cameraUp{0, 1, 0};    // Up direction of the camera
+    double defocusAngle{0.0};  // Variation angle of rays through each pixel
+    double focusDistance{10.0};// Distance from lookFrom to the focal plane
 
     // Initialize data members
     void initialize();
@@ -45,4 +57,7 @@ private:
 
     // Get a vector from the centre of a pixel to a random point near the centre
     [[nodiscard]] vec3 samplePixel() const;
+
+    // Get a random point in the camera defocus disk
+    [[nodiscard]] point3 sampleDefocusDisk() const;
 };

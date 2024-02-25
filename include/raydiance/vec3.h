@@ -58,6 +58,14 @@ public:
         }
     }
 
+    static vec3 randomInUnitDisk() {
+        while (true) {
+            vec3 v{randomDouble(-1.0, 1.0), randomDouble(-1.0, 1.0), 0.0};
+            if (v.lengthSquared() >= 1) continue;
+            return v;
+        }
+    }
+
     // Checks if the vector is near zero in all dimensions
     [[nodiscard]] bool isNearZero() const {
         const auto threshold{1e-8};

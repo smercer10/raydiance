@@ -26,7 +26,7 @@ bool metal::scatter(const ray &rIn, const intersection &i, colour &attenuation, 
     attenuation = albedo;
 
     // Only scatters if the reflected ray is in the same hemisphere as the normal
-    return dot(scattered.direction(), i.normal) > 0;
+    return dot(scattered.direction(), i.normal) > 0.0;
 }
 
 bool dielectric::scatter(const ray &rIn, const intersection &i, colour &attenuation, ray &scattered) const {
@@ -38,7 +38,7 @@ bool dielectric::scatter(const ray &rIn, const intersection &i, colour &attenuat
     vec3 unitDirection{unitVector(rIn.direction())};
 
     // Get cosine of the angle between the incident ray and the normal
-    double cosTheta{fmin(dot(-unitDirection, i.normal), 1.0)};
+    double cosTheta{std::fmin(dot(-unitDirection, i.normal), 1.0)};
 
     // Get sine of the same angle using trigonometric identity
     double sinTheta{std::sqrt(1.0 - cosTheta * cosTheta)};
