@@ -52,7 +52,7 @@ public:
 
     [[nodiscard]] static vec3 randomInUnitSphere() {
         while (true) {
-            vec3 v = random(-1.0, 1.0);
+            vec3 v{random(-1.0, 1.0)};
             if (v.lengthSquared() >= 1) continue;
             return v;
         }
@@ -60,7 +60,7 @@ public:
 
     // Checks if the vector is near zero in all dimensions
     [[nodiscard]] bool isNearZero() const {
-        const auto threshold = 1e-8;
+        const auto threshold{1e-8};
         return (std::fabs(e[0]) < threshold) && (std::fabs(e[1]) < threshold) && (std::fabs(e[2]) < threshold);
     }
 };
@@ -121,10 +121,10 @@ inline vec3 reflect(const vec3 &v, const vec3 &n) {
 }
 
 inline vec3 refract(const vec3 &v, const vec3 &n, double indexRatio) {
-    auto cosTheta = std::fmin(dot(-v, n), 1.0);
+    auto cosTheta{std::fmin(dot(-v, n), 1.0)};
 
-    vec3 rayOutPerp = indexRatio * (v + cosTheta * n);
-    vec3 rayOutParallel = -std::sqrt(std::fabs(1.0 - rayOutPerp.lengthSquared())) * n;
+    vec3 rayOutPerp{indexRatio * (v + cosTheta * n)};
+    vec3 rayOutParallel{-std::sqrt(std::fabs(1.0 - rayOutPerp.lengthSquared())) * n};
 
     return rayOutPerp + rayOutParallel;
 }

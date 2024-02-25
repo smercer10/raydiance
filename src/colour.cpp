@@ -2,12 +2,12 @@
 #include "raydiance/interval.h"
 
 void writeColour(std::ostream &out, colour pixelColour, int samplesPerPixel) {
-    auto r = pixelColour.r();
-    auto g = pixelColour.g();
-    auto b = pixelColour.b();
+    auto r{pixelColour.r()};
+    auto g{pixelColour.g()};
+    auto b{pixelColour.b()};
 
     // Get average sample intensity for each colour channel
-    auto scale = 1.0 / samplesPerPixel;
+    auto scale{1.0 / samplesPerPixel};
     r *= scale;
     g *= scale;
     b *= scale;

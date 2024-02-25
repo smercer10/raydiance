@@ -2,8 +2,8 @@
 
 bool scene::isHit(const ray &r, interval tRange, intersection &i) const {
     intersection tempI;
-    bool hitAnything = false;
-    auto closestSoFar = tRange.max;
+    bool hitAnything{false};
+    auto closestSoFar{tRange.max};
 
     // Find the closest intersection, if any
     for (const auto &object: objects) {

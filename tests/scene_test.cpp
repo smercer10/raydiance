@@ -3,8 +3,8 @@
 #include <gtest/gtest.h>
 
 TEST(SceneTest, Add) {
-    auto m = std::make_shared<lambertian>(colour{0.0, 0.0, 0.0});
-    auto o = std::make_shared<sphere>(point3{0, 0, -1}, 0.5, m);
+    auto m{std::make_shared<lambertian>(colour{0.0, 0.0, 0.0})};
+    auto o{std::make_shared<sphere>(point3{0, 0, -1}, 0.5, m)};
 
     scene s(o);
     EXPECT_EQ(s.objects.size(), 1);
@@ -15,8 +15,8 @@ TEST(SceneTest, Add) {
 }
 
 TEST(SceneTest, Clear) {
-    auto m = std::make_shared<lambertian>(colour{0.0, 0.0, 0.0});
-    auto o = std::make_shared<sphere>(point3{0, 0, -1}, 0.5, m);
+    auto m{std::make_shared<lambertian>(colour{0.0, 0.0, 0.0})};
+    auto o{std::make_shared<sphere>(point3{0, 0, -1}, 0.5, m)};
 
     scene s;
     s.add(o);
@@ -35,7 +35,7 @@ TEST(SceneTest, IsHit) {
     scene s;
     EXPECT_FALSE(s.isHit(r, tRange, i));
 
-    auto m = std::make_shared<lambertian>(colour{0.0, 0.0, 0.0});
+    auto m{std::make_shared<lambertian>(colour{0.0, 0.0, 0.0})};
 
     s.add(std::make_shared<sphere>(point3{0, 0, 1}, 0.5, m));
     EXPECT_FALSE(s.isHit(r, tRange, i));

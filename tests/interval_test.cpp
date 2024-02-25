@@ -1,5 +1,4 @@
 #include "raydiance/interval.h"
-#include "raydiance/utils.h"
 #include <gtest/gtest.h>
 
 TEST(IntervalTest, Contains) {
@@ -20,14 +19,14 @@ TEST(IntervalTest, Surrounds) {
 }
 
 TEST(IntervalTest, Empty) {
-    interval i = interval::empty;
+    interval i{interval::empty};
     EXPECT_FALSE(i.contains(0));
     EXPECT_FALSE(i.contains(-50));
     EXPECT_FALSE(i.surrounds(100));
 }
 
 TEST(IntervalTest, Universe) {
-    interval i = interval::universe;
+    interval i{interval::universe};
     EXPECT_TRUE(i.contains(-20));
     EXPECT_TRUE(i.contains(5));
     EXPECT_TRUE(i.contains(infinity));

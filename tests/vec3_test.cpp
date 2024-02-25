@@ -15,12 +15,12 @@ TEST(Vec3ClassTest, ElementAccess) {
 
 TEST(Vec3ClassTest, Negation) {
     vec3 v1(0.5, 0.6, 0.7);
-    vec3 v2 = -v1;
+    vec3 v2{-v1};
     EXPECT_DOUBLE_EQ(v2.x(), -0.5);
     EXPECT_DOUBLE_EQ(v2.y(), -0.6);
     EXPECT_DOUBLE_EQ(v2.z(), -0.7);
 
-    vec3 v3 = -v2;
+    vec3 v3{-v2};
     EXPECT_DOUBLE_EQ(v3.x(), 0.5);
     EXPECT_DOUBLE_EQ(v3.y(), 0.6);
     EXPECT_DOUBLE_EQ(v3.z(), 0.7);
@@ -113,7 +113,7 @@ TEST(Vec3ClassTest, IsNearZero) {
 TEST(Vec3HelperTest, Addition) {
     vec3 v1(0.5, -0.6, 0.7);
     vec3 v2(0.11, 0.0, 0.3);
-    vec3 v3 = v1 + v2;
+    vec3 v3{v1 + v2};
     EXPECT_DOUBLE_EQ(v3.x(), 0.61);
     EXPECT_DOUBLE_EQ(v3.y(), -0.6);
     EXPECT_DOUBLE_EQ(v3.z(), 1.0);
@@ -122,7 +122,7 @@ TEST(Vec3HelperTest, Addition) {
 TEST(Vec3HelperTest, Subtraction) {
     vec3 v1(0.8, 0.6, 0.3);
     vec3 v2(0.01, 0.2, 0.7);
-    vec3 v3 = v1 - v2;
+    vec3 v3{v1 - v2};
     EXPECT_DOUBLE_EQ(v3.x(), 0.79);
     EXPECT_DOUBLE_EQ(v3.y(), 0.4);
     EXPECT_DOUBLE_EQ(v3.z(), -0.4);
@@ -131,7 +131,7 @@ TEST(Vec3HelperTest, Subtraction) {
 TEST(Vec3HelperTest, HadamardProduct) {
     vec3 v1(0.5, 0.6, 0.7);
     vec3 v2(0.1, -0.2, 0.0);
-    vec3 v3 = v1 * v2;
+    vec3 v3{v1 * v2};
     EXPECT_DOUBLE_EQ(v3.x(), 0.05);
     EXPECT_DOUBLE_EQ(v3.y(), -0.12);
     EXPECT_DOUBLE_EQ(v3.z(), 0.0);
@@ -139,12 +139,12 @@ TEST(Vec3HelperTest, HadamardProduct) {
 
 TEST(Vec3HelperTest, ScalarMultiplication) {
     vec3 v1(0.5, 0.6, -0.7);
-    vec3 v2 = v1 * 2;
+    vec3 v2{v1 * 2};
     EXPECT_DOUBLE_EQ(v2.x(), 1.0);
     EXPECT_DOUBLE_EQ(v2.y(), 1.2);
     EXPECT_DOUBLE_EQ(v2.z(), -1.4);
 
-    vec3 v3 = 3 * v2;
+    vec3 v3{3 * v2};
     EXPECT_DOUBLE_EQ(v3.x(), 3.0);
     EXPECT_DOUBLE_EQ(v3.y(), 3.6);
     EXPECT_DOUBLE_EQ(v3.z(), -4.2);
@@ -152,7 +152,7 @@ TEST(Vec3HelperTest, ScalarMultiplication) {
 
 TEST(Vec3HelperTest, ScalarDivision) {
     vec3 v1(0.5, 0.6, -0.7);
-    vec3 v2 = v1 / 2;
+    vec3 v2{v1 / 2};
     EXPECT_DOUBLE_EQ(v2.x(), 0.25);
     EXPECT_DOUBLE_EQ(v2.y(), 0.3);
     EXPECT_DOUBLE_EQ(v2.z(), -0.35);
@@ -167,12 +167,12 @@ TEST(Vec3HelperTest, DotProduct) {
 TEST(Vec3HelperTest, CrossProduct) {
     vec3 v1(0.5, 0.6, 0.7);
     vec3 v2(0.1, -0.2, 0.0);
-    vec3 v3 = cross(v1, v2);
+    vec3 v3{cross(v1, v2)};
     EXPECT_DOUBLE_EQ(v3.x(), 0.14);
     EXPECT_DOUBLE_EQ(v3.y(), 0.07);
     EXPECT_DOUBLE_EQ(v3.z(), -0.16);
 
-    vec3 v4 = cross(v2, v1);
+    vec3 v4{cross(v2, v1)};
     EXPECT_DOUBLE_EQ(v4.x(), -0.14);
     EXPECT_DOUBLE_EQ(v4.y(), -0.07);
     EXPECT_DOUBLE_EQ(v4.z(), 0.16);
@@ -180,7 +180,7 @@ TEST(Vec3HelperTest, CrossProduct) {
 
 TEST(Vec3HelperTest, UnitVector) {
     vec3 v1(0.5, 0.6, 0.7);
-    vec3 v2 = unitVector(v1);
+    vec3 v2{unitVector(v1)};
     EXPECT_DOUBLE_EQ(v2.length(), 1.0);
     EXPECT_DOUBLE_EQ(v2.x(), 0.476731294622796);
     EXPECT_DOUBLE_EQ(v2.y(), 0.572077553547355);
@@ -190,14 +190,14 @@ TEST(Vec3HelperTest, UnitVector) {
 TEST(Vec3HelperTest, Reflect) {
     vec3 v1(0.5, 0.6, 0.7);
     vec3 n1(0.1, -0.2, 0.5);
-    vec3 r1 = reflect(v1, n1);
+    vec3 r1{reflect(v1, n1)};
     EXPECT_DOUBLE_EQ(r1.x(), 0.44400000000000001);
     EXPECT_DOUBLE_EQ(r1.y(), 0.71199999999999997);
     EXPECT_DOUBLE_EQ(r1.z(), 0.41999999999999998);
 
     vec3 v2(0.5, 0.6, 0.7);
     vec3 n2(0.0, 0.0, 0.0);
-    vec3 r2 = reflect(v2, n2);
+    vec3 r2{reflect(v2, n2)};
     EXPECT_DOUBLE_EQ(r2.x(), 0.5);
     EXPECT_DOUBLE_EQ(r2.y(), 0.6);
     EXPECT_DOUBLE_EQ(r2.z(), 0.7);
@@ -206,16 +206,14 @@ TEST(Vec3HelperTest, Reflect) {
 TEST(Vec3HelperTest, Refract) {
     vec3 v1(0.5, 0.6, 0.7);
     vec3 n1(0.1, -0.2, 0.5);
-    double ir1 = 1.5;
-    vec3 r1 = refract(v1, n1, ir1);
+    vec3 r1{refract(v1, n1, 1.5)};
     EXPECT_DOUBLE_EQ(r1.x(), 0.59959704801067448);
     EXPECT_DOUBLE_EQ(r1.y(), 1.2008059039786507);
     EXPECT_DOUBLE_EQ(r1.z(), 0.29798524005337268);
 
     vec3 v2(0.5, 0.6, 0.7);
     vec3 n2(0.8, 0.9, -1.4);
-    double ir2 = 0.9;
-    vec3 r2 = refract(v2, n2, ir2);
+    vec3 r2{refract(v2, n2, 0.9)};
     EXPECT_DOUBLE_EQ(r2.x(), 0.21690213899307964);
     EXPECT_DOUBLE_EQ(r2.y(), 0.27776490636721457);
     EXPECT_DOUBLE_EQ(r2.z(), 1.0379212567621106);

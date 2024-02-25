@@ -9,26 +9,31 @@ class camera {
 public:
     [[maybe_unused]] void setAspectRatio(double ratio) { aspectRatio = ratio; }
     [[maybe_unused]] void setImgWidth(int width) { imgWidth = width; }
-    [[maybe_unused]] void setCamCentre(point3 loc) { camCentre = loc; }
-    [[maybe_unused]] void setViewportHeight(double height) { viewportHeight = height; }
-    [[maybe_unused]] void setFocalLength(double len) { focalLength = len; }
     [[maybe_unused]] void setSamplesPerPixel(int samples) { samplesPerPixel = samples; }
+    [[maybe_unused]] void setMaxDepth(int depth) { maxDepth = depth; }
+    [[maybe_unused]] void setFieldOfView(double fov) { fieldOfView = fov; }
+    [[maybe_unused]] void setLookFrom(const point3 &from) { lookFrom = from; }
+    [[maybe_unused]] void setLookAt(const point3 &at) { lookAt = at; }
+    [[maybe_unused]] void setViewUp(const vec3 &up) { viewUp = up; }
 
     // Initialize the camera and render the world
     void render(std::ostream &imgOut, const object &world);
 
 private:
-    double aspectRatio{16.0 / 9.0};
-    int imgWidth{400};
-    int imgHeight{};
-    point3 camCentre{point3{0.0, 0.0, 0.0}};
-    double viewportHeight{2.0};
-    double focalLength{1.0};
     vec3 horPixelSpacing;
     vec3 verPixelSpacing;
     point3 zerothPixel;// Pixel at (0, 0) of the image
+
+    // Camera configuration
+    double aspectRatio{16.0 / 9.0};
+    int imgWidth{400};
+    int imgHeight{};
     int samplesPerPixel{10};
     int maxDepth{10};
+    double fieldOfView{90.0};// Vertical field of view in degrees
+    point3 lookFrom{0, 0, -1};
+    point3 lookAt{0, 0, 0};
+    vec3 viewUp{0, 1, 0};
 
     // Initialize data members
     void initialize();

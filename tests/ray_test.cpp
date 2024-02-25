@@ -17,7 +17,7 @@ TEST(RayTest, PointAt) {
     point3 origin(0.0, 0.0, 0.0);
     vec3 direction(0.1, 0.4, -0.8);
     ray r(origin, direction);
-    point3 p = r.at(5.0);
+    point3 p{r.at(5.0)};
     EXPECT_DOUBLE_EQ(p.x(), 0.5);
     EXPECT_DOUBLE_EQ(p.y(), 2.0);
     EXPECT_DOUBLE_EQ(p.z(), -4.0);
