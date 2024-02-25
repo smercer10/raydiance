@@ -14,6 +14,5 @@ public:
 
     void clear() { objects.clear(); }
     void add(const std::shared_ptr<object> &object) { objects.emplace_back(object); }
-
     [[nodiscard]] bool isHit(const ray &r, interval tRange, intersection &i) const override;
 };

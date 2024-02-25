@@ -116,15 +116,15 @@ inline vec3 randomUnitVector() {
     return unitVector(vec3::randomInUnitSphere());
 }
 
-inline vec3 randomVecOnHemisphere(const vec3 &normal) {
-    vec3 onUnitSphere = randomUnitVector();
-    if (dot(onUnitSphere, normal) > 0.0) {// On the same hemisphere as the normal
-        return onUnitSphere;
-    } else {
-        return -onUnitSphere;
-    }
-}
-
 inline vec3 reflect(const vec3 &v, const vec3 &n) {
     return v - 2 * dot(v, n) * n;
+}
+
+inline vec3 refract(const vec3 &v, const vec3 &n, double indexRatio) {
+    auto cosTheta = std::fmin(dot(-v, n), 1.0);
+
+    vec3 rayOutPerp = indexRatio * (v + cosTheta * n);
+    vec3 rayOutParallel = -std::sqrt(std::fabs(1.0 - rayOutPerp.lengthSquared())) * n;
+
+    return rayOutPerp + rayOutParallel;
 }

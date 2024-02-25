@@ -202,3 +202,21 @@ TEST(Vec3HelperTest, Reflect) {
     EXPECT_DOUBLE_EQ(r2.y(), 0.6);
     EXPECT_DOUBLE_EQ(r2.z(), 0.7);
 }
+
+TEST(Vec3HelperTest, Refract) {
+    vec3 v1(0.5, 0.6, 0.7);
+    vec3 n1(0.1, -0.2, 0.5);
+    double ir1 = 1.5;
+    vec3 r1 = refract(v1, n1, ir1);
+    EXPECT_DOUBLE_EQ(r1.x(), 0.59959704801067448);
+    EXPECT_DOUBLE_EQ(r1.y(), 1.2008059039786507);
+    EXPECT_DOUBLE_EQ(r1.z(), 0.29798524005337268);
+
+    vec3 v2(0.5, 0.6, 0.7);
+    vec3 n2(0.8, 0.9, -1.4);
+    double ir2 = 0.9;
+    vec3 r2 = refract(v2, n2, ir2);
+    EXPECT_DOUBLE_EQ(r2.x(), 0.21690213899307964);
+    EXPECT_DOUBLE_EQ(r2.y(), 0.27776490636721457);
+    EXPECT_DOUBLE_EQ(r2.z(), 1.0379212567621106);
+}

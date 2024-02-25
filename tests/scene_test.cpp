@@ -36,14 +36,13 @@ TEST(SceneTest, IsHit) {
     EXPECT_FALSE(s.isHit(r, tRange, i));
 
     auto m = std::make_shared<lambertian>(colour{0.0, 0.0, 0.0});
-    s.add(std::make_shared<sphere>(point3{0, 0, 1}, 0.5, m));
 
+    s.add(std::make_shared<sphere>(point3{0, 0, 1}, 0.5, m));
     EXPECT_FALSE(s.isHit(r, tRange, i));
 
     s.add(std::make_shared<sphere>(point3{0, 0, -1}, 0.5, m));
     s.add(std::make_shared<sphere>(point3{0, 0, -0.5}, 100, m));
     s.add(std::make_shared<sphere>(point3{0, 0, -3}, 1, m));
-
     EXPECT_TRUE(s.isHit(r, tRange, i));
     EXPECT_DOUBLE_EQ(i.t, 0.5);
     EXPECT_DOUBLE_EQ(i.p.x(), 0);
