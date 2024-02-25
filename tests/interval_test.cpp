@@ -34,3 +34,12 @@ TEST(IntervalTest, Universe) {
     EXPECT_TRUE(i.contains(-infinity));
     EXPECT_FALSE(i.surrounds(-infinity));
 }
+
+TEST(IntervalTest, Clamp) {
+    interval i(0.0, 1.0);
+    EXPECT_DOUBLE_EQ(i.clamp(0.5), 0.5);
+    EXPECT_DOUBLE_EQ(i.clamp(0.0), 0.0);
+    EXPECT_DOUBLE_EQ(i.clamp(1.0), 1.0);
+    EXPECT_DOUBLE_EQ(i.clamp(-0.5), 0.0);
+    EXPECT_DOUBLE_EQ(i.clamp(1.5), 1.0);
+}
