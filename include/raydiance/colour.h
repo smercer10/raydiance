@@ -36,6 +36,11 @@ inline colour operator+(const colour &c1, const colour &c2) {
     return {c1.r() + c2.r(), c1.g() + c2.g(), c1.b() + c2.b()};
 }
 
+// Hadamard product
+inline colour operator*(const colour &c1, const colour &c2) {
+    return {c1.r() * c2.r(), c1.g() * c2.g(), c1.b() * c2.b()};
+}
+
 inline colour operator*(double a, const colour &c) {
     return {a * c.r(), a * c.g(), a * c.b()};
 }

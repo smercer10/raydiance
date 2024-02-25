@@ -34,6 +34,15 @@ TEST(ColourHelperTest, Addition) {
     EXPECT_DOUBLE_EQ(c3.b(), 1.7);
 }
 
+TEST(ColourHelperTest, HadamardProduct) {
+    colour c1(0.5, 0.6, 0.7);
+    colour c2(0.0, 0.1, 1.0);
+    colour c3 = c1 * c2;
+    EXPECT_DOUBLE_EQ(c3.r(), 0.0);
+    EXPECT_DOUBLE_EQ(c3.g(), 0.06);
+    EXPECT_DOUBLE_EQ(c3.b(), 0.7);
+}
+
 TEST(ColourHelperTest, ScalarMultiplication) {
     colour c1(0.5, 0.6, 0.7);
     colour c2 = 2.0 * c1;

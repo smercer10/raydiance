@@ -124,3 +124,7 @@ inline vec3 randomVecOnHemisphere(const vec3 &normal) {
         return -onUnitSphere;
     }
 }
+
+inline vec3 reflect(const vec3 &v, const vec3 &n) {
+    return v - 2 * dot(v, n) * n;
+}

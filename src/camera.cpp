@@ -66,9 +66,14 @@ colour camera::getRayColour(const ray &r, int depth, const object &world) {
 
     // If the ray hits an object, return a colour based on the normal
     if (world.isHit(r, interval{0.001, infinity}, i)) {
-        vec3 direction = i.normal + randomUnitVector();
+        ray scattered;
+        colour attenuation;
 
-        return 0.5 * getRayColour(ray{i.p, direction}, depth - 1, world);
+        if (i.mat->scatter(r, i, attenuation, scattered)) {
+            return attenuation * getRayColour(scattered, depth - 1, world);
+        }
+
+        return colour{0.0, 0.0, 0.0};
     }
 
     // If the ray doesn't hit any objects, return a gradient background

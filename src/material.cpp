@@ -12,3 +12,10 @@ bool lambertian::scatter(const ray &rIn, const intersection &i, colour &attenuat
     attenuation = albedo;
     return true;
 }
+bool metal::scatter(const ray &rIn, const intersection &i, colour &attenuation, ray &scattered) const {
+    vec3 reflected{reflect(unitVector(rIn.direction()), i.normal)};
+    scattered = ray{i.p, reflected + fuzz * randomUnitVector()};
+    attenuation = albedo;
+
+    return dot(scattered.direction(), i.normal) > 0;
+}

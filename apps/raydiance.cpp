@@ -16,9 +16,15 @@ int main() {
 
     scene world;
 
-    auto m = std::make_shared<lambertian>(colour{0.0, 0.0, 0.0});
-    world.add(std::make_shared<sphere>(point3{0, 0, -1}, 0.5, m));
-    world.add(std::make_shared<sphere>(point3{0, -100.5, -1}, 100, m));
+    auto matGround = std::make_shared<lambertian>(colour(0.8, 0.8, 0.0));
+    auto matCentre = std::make_shared<lambertian>(colour(0.7, 0.3, 0.3));
+    auto matLeft = std::make_shared<metal>(colour(0.8, 0.8, 0.8), 0.3);
+    auto matRight = std::make_shared<metal>(colour(0.8, 0.6, 0.2), 1.0);
+
+    world.add(std::make_shared<sphere>(point3(0.0, -100.5, -1.0), 100.0, matGround));
+    world.add(std::make_shared<sphere>(point3(0.0, 0.0, -1.0), 0.5, matCentre));
+    world.add(std::make_shared<sphere>(point3(-1.0, 0.0, -1.0), 0.5, matLeft));
+    world.add(std::make_shared<sphere>(point3(1.0, 0.0, -1.0), 0.5, matRight));
 
     camera cam;
 

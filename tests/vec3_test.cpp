@@ -186,3 +186,19 @@ TEST(Vec3HelperTest, UnitVector) {
     EXPECT_DOUBLE_EQ(v2.y(), 0.572077553547355);
     EXPECT_DOUBLE_EQ(v2.z(), 0.667423812471915);
 }
+
+TEST(Vec3HelperTest, Reflect) {
+    vec3 v1(0.5, 0.6, 0.7);
+    vec3 n1(0.1, -0.2, 0.5);
+    vec3 r1 = reflect(v1, n1);
+    EXPECT_DOUBLE_EQ(r1.x(), 0.44400000000000001);
+    EXPECT_DOUBLE_EQ(r1.y(), 0.71199999999999997);
+    EXPECT_DOUBLE_EQ(r1.z(), 0.41999999999999998);
+
+    vec3 v2(0.5, 0.6, 0.7);
+    vec3 n2(0.0, 0.0, 0.0);
+    vec3 r2 = reflect(v2, n2);
+    EXPECT_DOUBLE_EQ(r2.x(), 0.5);
+    EXPECT_DOUBLE_EQ(r2.y(), 0.6);
+    EXPECT_DOUBLE_EQ(r2.z(), 0.7);
+}
