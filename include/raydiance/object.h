@@ -1,12 +1,17 @@
 #pragma once
 #include "interval.h"
+#include "material.h"
 #include "ray.h"
 #include <cassert>
+#include <memory>
+
+class material;
 
 class intersection {
 public:
     point3 p;
     vec3 normal;
+    std::shared_ptr<material> mat;
     double t{};
     bool frontFace{};
 

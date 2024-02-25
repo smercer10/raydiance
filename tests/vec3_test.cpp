@@ -96,6 +96,20 @@ TEST(Vec3ClassTest, LengthSquared) {
     EXPECT_DOUBLE_EQ(v2.lengthSquared(), 0.0);
 }
 
+TEST(Vec3ClassTest, IsNearZero) {
+    vec3 v1(0.0, 0.0, 0.0);
+    EXPECT_TRUE(v1.isNearZero());
+
+    vec3 v2(1e-9, 1e-9, 1e-9);
+    EXPECT_TRUE(v2.isNearZero());
+
+    vec3 v3(0.0, 1e-5, 0);
+    EXPECT_FALSE(v3.isNearZero());
+
+    vec3 v4(1e-8, 1e-8, 1e-8);
+    EXPECT_FALSE(v4.isNearZero());
+}
+
 TEST(Vec3HelperTest, Addition) {
     vec3 v1(0.5, -0.6, 0.7);
     vec3 v2(0.11, 0.0, 0.3);

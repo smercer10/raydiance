@@ -26,6 +26,7 @@
     i.p = r.at(i.t);
     vec3 outwardNormal{(i.p - centre) / radius};
     i.setFaceNormal(r, outwardNormal);
+    i.mat = mat;
 
     return true;
 }

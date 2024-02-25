@@ -15,8 +15,10 @@ int main() {
     }
 
     scene world;
-    world.add(std::make_shared<sphere>(point3{0, 0, -1}, 0.5));
-    world.add(std::make_shared<sphere>(point3{0, -100.5, -1}, 100));
+
+    auto m = std::make_shared<lambertian>(colour{0.0, 0.0, 0.0});
+    world.add(std::make_shared<sphere>(point3{0, 0, -1}, 0.5, m));
+    world.add(std::make_shared<sphere>(point3{0, -100.5, -1}, 100, m));
 
     camera cam;
 

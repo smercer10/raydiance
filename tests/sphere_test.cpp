@@ -1,10 +1,14 @@
+#include "raydiance/colour.h"
+#include "raydiance/material.h"
 #include "raydiance/sphere.h"
 #include <gtest/gtest.h>
 
 TEST(SphereTest, IsHit) {
-    sphere s1{point3{0.0, 0.0, -4.0}, 1.0};
-    sphere s2{point3{2.0, 0.0, 2.0}, 2.0};
-    sphere s3{point3{0.0, 0.0, 5.0}, 2.0};
+    auto m = std::make_shared<lambertian>(colour{0.0, 0.0, 0.0});
+
+    sphere s1{point3{0.0, 0.0, -4.0}, 1.0, m};
+    sphere s2{point3{2.0, 0.0, 2.0}, 2.0, m};
+    sphere s3{point3{0.0, 0.0, 5.0}, 2.0, m};
 
     ray r{point3{0.0, 0.0, 0.0}, vec3{0.0, 0.0, 1.0}};
     intersection i;

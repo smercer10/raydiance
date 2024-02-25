@@ -57,6 +57,12 @@ public:
             return v;
         }
     }
+
+    // Checks if the vector is near zero in all dimensions
+    [[nodiscard]] bool isNearZero() const {
+        const auto threshold = 1e-8;
+        return (std::fabs(e[0]) < threshold) && (std::fabs(e[1]) < threshold) && (std::fabs(e[2]) < threshold);
+    }
 };
 
 // A point is just a vector, so we can use these interchangeably
