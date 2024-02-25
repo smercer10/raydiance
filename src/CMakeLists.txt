@@ -1,4 +1,4 @@
-add_library(raydiance_lib out.cpp sphere.cpp scene.cpp interval.cpp)
+add_library(raydiance_lib file.cpp sphere.cpp scene.cpp interval.cpp camera.cpp)
 
 target_compile_features(raydiance_lib PUBLIC cxx_std_17)
 

@@ -1,28 +1,31 @@
 #pragma once
-#include "out.h"
+#include "object.h"
 #include "vec3.h"
+#include <ostream>
 
 // The Camera uses a right-handed coordinate system
-namespace camera {
-    inline constexpr auto viewportHeight = 2.0;
-    inline constexpr auto viewportWidth = viewportHeight * (static_cast<double>(out::imgWidth) / out::imgHeight);
-    inline constexpr auto focalLength = 1.0;
-    inline const point3 center = point3{0.0, 0.0, 0.0};
+class camera {
+public:
+    [[maybe_unused]] void setAspectRatio(double ratio) { aspectRatio = ratio; }
+    [[maybe_unused]] void setImgWidth(int width) { imgWidth = width; }
+    [[maybe_unused]] void setViewportHeight(double height) { viewportHeight = height; }
+    [[maybe_unused]] void setFocalLength(double len) { focalLength = len; }
+    [[maybe_unused]] void setCenter(point3 loc) { center = loc; }
 
-    // Vector from left to right of the viewport
-    inline const vec3 viewportU = vec3{viewportWidth, 0.0, 0.0};
+    void render(std::ostream &imgOut, const object &world);
 
-    // Vector from top to bottom of the viewport
-    inline const vec3 viewportV = vec3{0.0, -viewportHeight, 0.0};
+private:
+    double aspectRatio{16.0 / 9.0};
+    int imgWidth{400};
+    int imgHeight{};
+    point3 center{point3{0.0, 0.0, 0.0}};
+    double viewportHeight{2.0};
+    double focalLength{1.0};
+    vec3 horPixelSpacing;
+    vec3 verPixelSpacing;
+    point3 zerothPixel;
 
-    // Horizontal pixel spacing
-    inline const vec3 pixelDeltaU = viewportU / out::imgWidth;
-
-    // Vertical pixel spacing
-    inline const vec3 pixelDeltaV = viewportV / out::imgHeight;
-
-    inline const point3 viewportTopLeft = center - (viewportU / 2) - (viewportV / 2) - vec3{0.0, 0.0, focalLength};
-
-    // Location of pixel (0, 0) in the image
-    inline const point3 zerothPixel = viewportTopLeft + (pixelDeltaU / 2) + (pixelDeltaV / 2);
-}// namespace camera
+    void initialize();
+    [[nodiscard]] ray createRay(int x, int y) const;
+    static colour rayColour(const ray &r, const object &world);
+};
