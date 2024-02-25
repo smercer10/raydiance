@@ -12,6 +12,11 @@ void writeColour(std::ostream &out, colour pixelColour, int samplesPerPixel) {
     g *= scale;
     b *= scale;
 
+    // Convert from linear space to gamma space
+    r = std::sqrt(r);
+    g = std::sqrt(g);
+    b = std::sqrt(b);
+
     // Colour intensity should remain within [0, 1] after scaling
     static const interval intensity(0.0, 0.999);
 

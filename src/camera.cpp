@@ -18,7 +18,7 @@ void camera::render(std::ostream &imgOut, const object &world) {
 
             for (auto s{0}; s < samplesPerPixel; ++s) {
                 ray r = getRay(x, y);
-                pixelColour += getRayColour(r, world);
+                pixelColour += getRayColour(r, maxDepth, world);
             }
 
             writeColour(imgOut, pixelColour, samplesPerPixel);
@@ -58,12 +58,17 @@ ray camera::getRay(int x, int y) const {
     return ray{rayOrigin, rayDirection};
 }
 
-colour camera::getRayColour(const ray &r, const object &world) {
+colour camera::getRayColour(const ray &r, int depth, const object &world) {
     intersection i;
 
+    // If the bounce limit is exceeded, no more light is gathered
+    if (depth <= 0) return colour{0.0, 0.0, 0.0};
+
     // If the ray hits an object, return a colour based on the normal
-    if (world.isHit(r, interval{0.0, infinity}, i)) {
-        return 0.5 * colour{i.normal.x() + 1, i.normal.y() + 1, i.normal.z() + 1};
+    if (world.isHit(r, interval{0.001, infinity}, i)) {
+        vec3 direction = i.normal + randomUnitVector();
+
+        return 0.5 * getRayColour(ray{i.p, direction}, depth - 1, world);
     }
 
     // If the ray doesn't hit any objects, return a gradient background

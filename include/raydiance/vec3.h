@@ -1,4 +1,5 @@
 #pragma once
+#include "utils.h"
 #include <cmath>
 #include <ostream>
 
@@ -43,6 +44,18 @@ public:
 
     [[nodiscard]] double lengthSquared() const {
         return e[0] * e[0] + e[1] * e[1] + e[2] * e[2];
+    }
+
+    [[nodiscard]] static vec3 random(double min = 0.0, double max = 1.0) {
+        return {randomDouble(min, max), randomDouble(min, max), randomDouble(min, max)};
+    }
+
+    [[nodiscard]] static vec3 randomInUnitSphere() {
+        while (true) {
+            vec3 v = random(-1.0, 1.0);
+            if (v.lengthSquared() >= 1) continue;
+            return v;
+        }
     }
 };
 
@@ -91,4 +104,17 @@ inline vec3 cross(const vec3 &u, const vec3 &v) {
 
 inline vec3 unitVector(vec3 v) {
     return v / v.length();
+}
+
+inline vec3 randomUnitVector() {
+    return unitVector(vec3::randomInUnitSphere());
+}
+
+inline vec3 randomVecOnHemisphere(const vec3 &normal) {
+    vec3 onUnitSphere = randomUnitVector();
+    if (dot(onUnitSphere, normal) > 0.0) {// On the same hemisphere as the normal
+        return onUnitSphere;
+    } else {
+        return -onUnitSphere;
+    }
 }

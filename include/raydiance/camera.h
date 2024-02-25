@@ -28,6 +28,7 @@ private:
     vec3 verPixelSpacing;
     point3 zerothPixel;// Pixel at (0, 0) of the image
     int samplesPerPixel{10};
+    int maxDepth{10};
 
     // Initialize data members
     void initialize();
@@ -35,7 +36,7 @@ private:
     // Get a randomly sampled ray for the pixel at (x, y)
     [[nodiscard]] ray getRay(int x, int y) const;
 
-    static colour getRayColour(const ray &r, const object &world);
+    static colour getRayColour(const ray &r, int depth, const object &world);
 
     // Get a vector from the centre of a pixel to a random point near the centre
     [[nodiscard]] vec3 samplePixel() const;
