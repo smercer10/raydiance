@@ -1,5 +1,5 @@
 #pragma once
-#include "globals.h"
+#include "utils.h"
 
 class interval {
 public:
@@ -11,6 +11,12 @@ public:
 
     [[nodiscard]] bool contains(double x) const { return x >= min && x <= max; }
     [[nodiscard]] bool surrounds(double x) const { return x > min && x < max; }
+
+    [[nodiscard]] double clamp(double x) const {
+        if (x < min) return min;
+        if (x > max) return max;
+        return x;
+    }
 
     static const interval empty;
     static const interval universe;

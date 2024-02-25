@@ -5,11 +5,11 @@
 
 class sphere : public object {
 public:
-    sphere(point3 center, double radius) : center(center), radius(radius){};
+    sphere(point3 centre, double radius) : centre(centre), radius(radius){};
 
     [[nodiscard]] bool isHit(const ray &r, interval tRange, intersection &i) const override;
 
 private:
-    point3 center;
+    point3 centre;
     double radius{};
 };

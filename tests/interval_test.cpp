@@ -1,5 +1,5 @@
-#include "raydiance/globals.h"
 #include "raydiance/interval.h"
+#include "raydiance/utils.h"
 #include <gtest/gtest.h>
 
 TEST(IntervalTest, Contains) {

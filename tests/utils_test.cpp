@@ -1,7 +1,7 @@
-#include "raydiance/globals.h"
+#include "raydiance/utils.h"
 #include <gtest/gtest.h>
 
-TEST(GlobalsTest, degreesToRadians) {
+TEST(UtilsTest, degreesToRadians) {
     EXPECT_DOUBLE_EQ(degreesToRadians(0.0), 0);
     EXPECT_DOUBLE_EQ(degreesToRadians(90.0), pi / 2);
     EXPECT_DOUBLE_EQ(degreesToRadians(180.0), pi);

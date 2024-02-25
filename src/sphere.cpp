@@ -2,7 +2,7 @@
 #include <cmath>
 
 [[nodiscard]] bool sphere::isHit(const ray &r, interval tRange, intersection &i) const {
-    vec3 oc{r.origin() - center};
+    vec3 oc{r.origin() - centre};
     auto a{r.direction().lengthSquared()};
     auto halfB{dot(oc, r.direction())};
     auto c{oc.lengthSquared() - radius * radius};
@@ -24,7 +24,7 @@
 
     i.t = root;
     i.p = r.at(i.t);
-    vec3 outwardNormal{(i.p - center) / radius};
+    vec3 outwardNormal{(i.p - centre) / radius};
     i.setFaceNormal(r, outwardNormal);
 
     return true;
