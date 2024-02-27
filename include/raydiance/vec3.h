@@ -38,7 +38,7 @@ public:
         return *this;
     }
 
-    vec3 &operator/=(double t) { return *this *= 1 / t; }
+    vec3 &operator/=(double t) { return *this *= 1.0 / t; }
 
     [[nodiscard]] double length() const { return std::sqrt(lengthSquared()); }
 
@@ -53,7 +53,7 @@ public:
     [[nodiscard]] static vec3 randomInUnitSphere() {
         while (true) {
             vec3 v{random(-1.0, 1.0)};
-            if (v.lengthSquared() >= 1) continue;
+            if (v.lengthSquared() >= 1.0) continue;
             return v;
         }
     }
@@ -61,7 +61,7 @@ public:
     static vec3 randomInUnitDisk() {
         while (true) {
             vec3 v{randomDouble(-1.0, 1.0), randomDouble(-1.0, 1.0), 0.0};
-            if (v.lengthSquared() >= 1) continue;
+            if (v.lengthSquared() >= 1.0) continue;
             return v;
         }
     }
@@ -103,7 +103,7 @@ inline vec3 operator*(const vec3 &v, double t) {
 }
 
 inline vec3 operator/(vec3 v, double t) {
-    return (1 / t) * v;
+    return (1.0 / t) * v;
 }
 
 inline double dot(const vec3 &u, const vec3 &v) {
@@ -125,7 +125,7 @@ inline vec3 randomUnitVector() {
 }
 
 inline vec3 reflect(const vec3 &v, const vec3 &n) {
-    return v - 2 * dot(v, n) * n;
+    return v - 2.0 * dot(v, n) * n;
 }
 
 inline vec3 refract(const vec3 &v, const vec3 &n, double indexRatio) {

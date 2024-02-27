@@ -8,7 +8,7 @@ TEST(RayTest, Accessors) {
     EXPECT_DOUBLE_EQ(r.origin().x(), 0.0);
     EXPECT_DOUBLE_EQ(r.origin().y(), 0.0);
     EXPECT_DOUBLE_EQ(r.origin().z(), 0.0);
-    EXPECT_DOUBLE_EQ(r.direction().x(), 1);
+    EXPECT_DOUBLE_EQ(r.direction().x(), 1.0);
     EXPECT_DOUBLE_EQ(r.direction().y(), 0.7);
     EXPECT_DOUBLE_EQ(r.direction().z(), -0.05);
 }

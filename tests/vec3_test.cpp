@@ -56,12 +56,12 @@ TEST(Vec3ClassTest, MutatingAddition) {
 
 TEST(Vec3ClassTest, MutatingScalarMultiplication) {
     vec3 v(0.5, 0.6, 0.7);
-    v *= 2;
+    v *= 2.0;
     EXPECT_DOUBLE_EQ(v.x(), 1.0);
     EXPECT_DOUBLE_EQ(v.y(), 1.2);
     EXPECT_DOUBLE_EQ(v.z(), 1.4);
 
-    v *= 0;
+    v *= 0.0;
     EXPECT_DOUBLE_EQ(v.x(), 0.0);
     EXPECT_DOUBLE_EQ(v.y(), 0.0);
     EXPECT_DOUBLE_EQ(v.z(), 0.0);
@@ -69,7 +69,7 @@ TEST(Vec3ClassTest, MutatingScalarMultiplication) {
 
 TEST(Vec3ClassTest, MutatingScalarDivision) {
     vec3 v(0.5, 0.6, 0.7);
-    v /= 2;
+    v /= 2.0;
     EXPECT_DOUBLE_EQ(v.x(), 0.25);
     EXPECT_DOUBLE_EQ(v.y(), 0.3);
     EXPECT_DOUBLE_EQ(v.z(), 0.35);
@@ -103,7 +103,7 @@ TEST(Vec3ClassTest, IsNearZero) {
     vec3 v2(1e-9, 1e-9, 1e-9);
     EXPECT_TRUE(v2.isNearZero());
 
-    vec3 v3(0.0, 1e-5, 0);
+    vec3 v3(0.0, 1e-5, 0.0);
     EXPECT_FALSE(v3.isNearZero());
 
     vec3 v4(1e-8, 1e-8, 1e-8);
@@ -139,12 +139,12 @@ TEST(Vec3HelperTest, HadamardProduct) {
 
 TEST(Vec3HelperTest, ScalarMultiplication) {
     vec3 v1(0.5, 0.6, -0.7);
-    vec3 v2{v1 * 2};
+    vec3 v2{v1 * 2.0};
     EXPECT_DOUBLE_EQ(v2.x(), 1.0);
     EXPECT_DOUBLE_EQ(v2.y(), 1.2);
     EXPECT_DOUBLE_EQ(v2.z(), -1.4);
 
-    vec3 v3{3 * v2};
+    vec3 v3{3.0 * v2};
     EXPECT_DOUBLE_EQ(v3.x(), 3.0);
     EXPECT_DOUBLE_EQ(v3.y(), 3.6);
     EXPECT_DOUBLE_EQ(v3.z(), -4.2);
@@ -152,7 +152,7 @@ TEST(Vec3HelperTest, ScalarMultiplication) {
 
 TEST(Vec3HelperTest, ScalarDivision) {
     vec3 v1(0.5, 0.6, -0.7);
-    vec3 v2{v1 / 2};
+    vec3 v2{v1 / 2.0};
     EXPECT_DOUBLE_EQ(v2.x(), 0.25);
     EXPECT_DOUBLE_EQ(v2.y(), 0.3);
     EXPECT_DOUBLE_EQ(v2.z(), -0.35);

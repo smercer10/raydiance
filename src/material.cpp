@@ -62,8 +62,8 @@ bool dielectric::scatter(const ray &rIn, const intersection &i, colour &attenuat
 
 double dielectric::reflectance(double cosine, double refractionIndex) {
     // Use Schlick's approximation for reflectance
-    auto r0{(1 - refractionIndex) / (1 + refractionIndex)};
+    double r0{(1.0 - refractionIndex) / (1.0 + refractionIndex)};
     r0 *= r0;
 
-    return r0 + (1 - r0) * std::pow((1 - cosine), 5);
+    return r0 + (1.0 - r0) * std::pow((1.0 - cosine), 5.0);
 }

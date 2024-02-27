@@ -3,32 +3,32 @@
 
 TEST(IntervalTest, Contains) {
     interval i(0, 1);
-    EXPECT_TRUE(i.contains(0));
-    EXPECT_TRUE(i.contains(1));
+    EXPECT_TRUE(i.contains(0.0));
+    EXPECT_TRUE(i.contains(1.0));
     EXPECT_TRUE(i.contains(0.5));
     EXPECT_FALSE(i.contains(-0.1));
-    EXPECT_FALSE(i.contains(2));
+    EXPECT_FALSE(i.contains(2.0));
 }
 
 TEST(IntervalTest, Surrounds) {
     interval i(0, 1);
     EXPECT_TRUE(i.surrounds(0.1));
     EXPECT_TRUE(i.surrounds(0.95));
-    EXPECT_FALSE(i.surrounds(0));
-    EXPECT_FALSE(i.surrounds(1));
+    EXPECT_FALSE(i.surrounds(0.0));
+    EXPECT_FALSE(i.surrounds(1.0));
 }
 
 TEST(IntervalTest, Empty) {
     interval i{interval::empty};
-    EXPECT_FALSE(i.contains(0));
-    EXPECT_FALSE(i.contains(-50));
-    EXPECT_FALSE(i.surrounds(100));
+    EXPECT_FALSE(i.contains(0.0));
+    EXPECT_FALSE(i.contains(-50.0));
+    EXPECT_FALSE(i.surrounds(100.0));
 }
 
 TEST(IntervalTest, Universe) {
     interval i{interval::universe};
-    EXPECT_TRUE(i.contains(-20));
-    EXPECT_TRUE(i.contains(5));
+    EXPECT_TRUE(i.contains(-20.0));
+    EXPECT_TRUE(i.contains(5.0));
     EXPECT_TRUE(i.contains(infinity));
     EXPECT_FALSE(i.surrounds(infinity));
     EXPECT_TRUE(i.contains(-infinity));

@@ -8,13 +8,15 @@
     auto c{oc.lengthSquared() - radius * radius};
 
     auto discriminant{halfB * halfB - a * c};
+
     if (discriminant < 0) {
         return false;
     }
 
-    // Find the nearest root that lies in the acceptable range
     auto sqrtd{std::sqrt(discriminant)};
     auto root{(-halfB - sqrtd) / a};
+
+    // Find the nearest root that lies in the acceptable range
     if (!tRange.surrounds(root)) {
         root = (-halfB + sqrtd) / a;
         if (!tRange.surrounds(root)) {

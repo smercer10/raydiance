@@ -16,7 +16,7 @@ public:
     bool frontFace{};
 
     void setFaceNormal(const ray &r, const vec3 &outwardNormal) {
-        frontFace = dot(r.direction(), outwardNormal) < 0;
+        frontFace = dot(r.direction(), outwardNormal) < 0.0;
         normal = frontFace ? outwardNormal : -outwardNormal;
     }
 };
