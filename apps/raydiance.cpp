@@ -9,14 +9,14 @@ int main() {
     std::ofstream imgOut{file::openOutStream("img")};
 
     if (!imgOut.is_open()) {
-        std::cerr << "Failed to open image file.\n";
+        std::cerr << "Failed to open file for writing.\n";
         return 1;
     }
 
     std::ifstream sceneConfigFile{"scene.json"};
 
     if (!sceneConfigFile.is_open()) {
-        std::cerr << "Failed to open scene file.\n";
+        std::cerr << "Failed to open scene config file.\n";
         return 1;
     }
 

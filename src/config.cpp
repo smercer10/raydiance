@@ -39,7 +39,7 @@ void config::setCamera(const nlohmann::json &j, camera &cam) {
             cam.setFocusDistance(cameraConfig["focusDistance"]);
         }
     } else {
-        std::cout << "No camera configuration found, using default values." << std::endl;
+        std::cout << "No camera configuration found, using default values.\n";
     }
 }
 
@@ -68,6 +68,6 @@ void config::addObjects(const nlohmann::json &j, scene &world) {
             world.add(std::make_shared<class sphere>(center, radius, mat));
         }
     } else {
-        std::cout << "No spheres found in the configuration. Was this intended?" << std::endl;
+        std::cout << "No spheres found in the configuration file. Was this intended?\n";
     }
 }
