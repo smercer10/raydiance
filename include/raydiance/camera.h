@@ -40,12 +40,12 @@ private:
     int imgHeight{};
     int samplesPerPixel{10};
     int maxDepth{10};        // Maximum number of bounces for a ray
-    double fieldOfView{90.0};// Vertical field of view in degrees
-    point3 lookFrom{0, 0, -10};
-    point3 lookAt{0, 0, 0};
-    vec3 cameraUp{0, 1, 0};    // Up direction of the camera
-    double defocusAngle{0.0};  // Variation angle of rays through each pixel
-    double focusDistance{10.0};// Distance from lookFrom to the focal plane
+    double fieldOfView{45.0};// Vertical field of view in degrees
+    point3 lookFrom{0.0, 0.0, 0.0};
+    point3 lookAt{0.0, 0.0, 1.0};
+    vec3 cameraUp{0.0, 1.0, 0.0};// Up direction of the camera
+    double defocusAngle{0.0};    // Variation angle of rays through each pixel
+    double focusDistance{1.0};   // Distance from lookFrom to the focal plane
 
     // Initialize data members
     void initialize();
@@ -53,6 +53,8 @@ private:
     // Get a randomly sampled ray for the pixel at (x, y)
     [[nodiscard]] ray getRay(int x, int y) const;
 
+    // Gets the colour of the object that the ray intersects
+    // If the ray doesn't intersect anything, returns the background colour
     static colour getRayColour(const ray &r, int depth, const object &world);
 
     // Get a vector from the centre of a pixel to a random point near the centre
