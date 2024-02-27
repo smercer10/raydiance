@@ -56,7 +56,7 @@ void camera::initialize() {
     point3 viewportTopLeft{lookFrom - (viewportU * 0.5) - (viewportV * 0.5) - (focusDistance * w)};
     zerothPixel = viewportTopLeft + (horPixelSpacing * 0.5) + (verPixelSpacing * 0.5);
 
-    auto defocusRadius = focusDistance * std::tan(degreesToRadians(defocusAngle) * 0.5);
+    auto defocusRadius{focusDistance * std::tan(degreesToRadians(defocusAngle) * 0.5)};
     defocusDiskU = defocusRadius * u;
     defocusDiskV = defocusRadius * v;
 }

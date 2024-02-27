@@ -41,7 +41,7 @@ private:
     int samplesPerPixel{10};
     int maxDepth{10};        // Maximum number of bounces for a ray
     double fieldOfView{90.0};// Vertical field of view in degrees
-    point3 lookFrom{0, 0, -1};
+    point3 lookFrom{0, 0, -10};
     point3 lookAt{0, 0, 0};
     vec3 cameraUp{0, 1, 0};    // Up direction of the camera
     double defocusAngle{0.0};  // Variation angle of rays through each pixel
