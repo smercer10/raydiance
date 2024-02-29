@@ -1,0 +1,110 @@
+{
+  "lookFrom": {
+    "x": -5.5,
+    "y": 2.5,
+    "z": 9.5
+  },
+  "lookAt": {
+    "x": -4.0,
+    "y": 1.0,
+    "z": 0.0
+  },
+  "samplesPerPixel": 500,
+  "maxDepth": 50,
+  "imgWidth": 1200,
+  "defocusAngle": 1.2,
+  "focusDistance": 8.0,
+  "fieldOfView": 60.0,
+  "spheres": [
+    {
+      "centre": {
+        "x": 0.0,
+        "y": -1000.0,
+        "z": -1.0
+      },
+      "radius": 1000.0,
+      "material": {
+        "type": "lambertian",
+        "colour": {
+          "r": 0.2,
+          "g": 0.5,
+          "b": 0.0
+        }
+      }
+    },
+    {
+      "centre": {
+        "x": -4,
+        "y": 2.0,
+        "z": -0.5
+      },
+      "radius": 2.0,
+      "material": {
+        "type": "lambertian",
+        "colour": {
+          "r": 0.2,
+          "g": 0.2,
+          "b": 0.8
+        }
+      }
+    },
+    {
+      "centre": {
+        "x": -8.0,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "radius": 1.5,
+      "material": {
+        "type": "dielectric",
+        "refIdx": 1.5
+      }
+    },
+    {
+      "centre": {
+        "x": -8.0,
+        "y": 1.5,
+        "z": 0.0
+      },
+      "radius": -1.5,
+      "material": {
+        "type": "dielectric",
+        "refIdx": 1.5
+      }
+    },
+    {
+      "centre": {
+        "x": -3.0,
+        "y": 1.25,
+        "z": 5.0
+      },
+      "radius": 1.25,
+      "material": {
+        "type": "metal",
+        "colour": {
+          "r": 0.7,
+          "g": 0.1,
+          "b": 0.1
+        },
+        "fuzz": 0.2
+      }
+    },
+    {
+      "centre": {
+        "x": -6.0,
+        "y": 0.75,
+        "z": 4.0
+      },
+      "radius": 0.75,
+      "material": {
+        "type": "metal",
+        "colour": {
+          "r": 0.7,
+          "g": 0.6,
+          "b": 0.5
+        },
+        "fuzz": 0.0
+      }
+    }
+  ]
+}
