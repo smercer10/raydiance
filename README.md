@@ -1,6 +1,6 @@
 # raydiance
 
-**raydiance** generates a path-traced **PPM** render from a **JSON** scene description.
+raydiance generates a path-traced PPM render from a JSON scene description.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/smercer10/raydiance/blob/main/LICENSE)
 [![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/smercer10/raydiance/ci.yml?label=CI)](https://github.com/smercer10/raydiance/actions/workflows/ci.yml)
@@ -20,17 +20,17 @@
 raydiance -s <path to scene config file> [-o <output image name>]
 ```
 
-A path to a scene configuration file is required, but the output image name is optional and defaults to **img**.
-Notably, the image name does not require a file extension, as the **.ppm** extension is automatically appended during
+A path to a scene configuration file is required, but the output image name is optional and defaults to `img`.
+Notably, the image name does not require a file extension, as the `ppm` extension is automatically appended during
 runtime.
 
 ## Example
 
-### **PPM** Render (Converted to **JPEG**)
+### PPM Render (Converted to JPEG)
 
 ![img-28-02-2024-21-54-04.jpeg](example%2Fimg-28-02-2024-21-54-04.jpeg)
 
-### **JSON** Scene Description
+### JSON Scene Description
 
 ```json
 {
@@ -180,10 +180,10 @@ runtime.
 
 ### Prerequisites
 
-- **C++17** compiler (tested with **g++** and **clang++**)
-- **CMake** 3.14+
-- **Clang-Format** (optional)
-- **Clang-Tidy** (optional)
+- C++17 compiler (tested with GCC and Clang)
+- CMake 3.14+
+- Clang-Format (optional)
+- Clang-Tidy (optional)
 
 ### Steps
 
@@ -213,9 +213,9 @@ runtime.
 
 ## Running Tests
 
-The project utilises the **GoogleTest** framework with **CTest**.
+The project utilises the GoogleTest framework with CTest.
 
-To execute the testcases, run the following command from the project root directory:
+To execute the testcases, run the following command from the project root:
 
 ```bash
   cmake --build build --target test
@@ -229,5 +229,4 @@ See [open issues](https://github.com/smercer10/raydiance/issues) for ways to get
 
 ## Acknowledgements
 
-The majority of the ray tracing logic is credited to
-the renowned [Ray Tracing in One Weekend Book Series](https://raytracing.github.io).
+The core ray tracing logic is based on the brilliant [Ray Tracing in One Weekend Book Series](https://raytracing.github.io).
