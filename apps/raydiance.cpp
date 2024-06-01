@@ -8,9 +8,9 @@
 
 int main(int argc, char *argv[]) {
     std::string sceneConfigPath;
-    std::string imgOutName;
+    std::string imgOutName{"img"};
 
-    // Get file paths from command line arguments
+    // Get file paths from command line args
     int opt;
     while ((opt = getopt(argc, argv, "s:o:")) != -1) {
         switch (opt) {
@@ -33,26 +33,21 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // The default output image name is "img"
-    if (imgOutName.empty()) {
-        imgOutName = "img";
-    }
-
-    std::ofstream imgOut{file::openOutStream(imgOutName)};
-
     std::ifstream sceneConfigFile{sceneConfigPath};
 
-    if (!imgOut.is_open()) {
-        std::cerr << "Failed to open file for writing.\n";
-        return 1;
-    }
+    std::ofstream imgOut{file::openOutStream(imgOutName)};
 
     if (!sceneConfigFile.is_open()) {
         std::cerr << "Failed to open scene config file.\n";
         return 1;
     }
 
-    nlohmann::json sceneConfig = nlohmann::json::parse(sceneConfigFile);
+    if (!imgOut.is_open()) {
+        std::cerr << "Failed to open file for writing.\n";
+        return 1;
+    }
+
+    nlohmann::json sceneConfig{nlohmann::json::parse(sceneConfigFile)};
 
     scene world;
     config::addObjects(sceneConfig, world);
